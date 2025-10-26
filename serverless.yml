@@ -1,0 +1,23 @@
+service: email-service
+
+frameworkVersion: "4" 
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  stage: dev
+  region: us-east-1
+
+plugins:
+  - serverless-offline
+
+functions:
+  sendEmail:
+    handler: handler.sendEmail
+    events:
+      - http:
+          path: send
+          method: post
+          cors: true
+
+
